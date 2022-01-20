@@ -16,11 +16,11 @@
 public struct Duration: Sendable {
   fileprivate let nanoseconds: UInt64
   
-  static func seconds(_ seconds: Int) -> Duration {
+  public static func seconds(_ seconds: Int) -> Duration {
     Duration(nanoseconds: UInt64(seconds * 1_000_000_000))
   }
   
-  static func seconds(_ seconds: Double) -> Duration {
+  public static func seconds(_ seconds: Double) -> Duration {
     Duration(nanoseconds: UInt64(seconds) * 1_000_000_000)
   }
 }
