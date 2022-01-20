@@ -1,4 +1,3 @@
-// swift-tools-version:5.0
 //===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift.org open source project
@@ -11,25 +10,21 @@
 //
 //===----------------------------------------------------------------------===//
 
-import PackageDescription
-
-let package = Package(
-  name: "SENNNN_AsyncOperators",
-  products: [
-    .library(
-      name: "SENNNN_AsyncOperators",
-      targets: ["SENNNN_AsyncOperators"]
-    ),
-  ],
-  dependencies: [],
-  targets: [
-    .target(
-      name: "SENNNN_AsyncOperators",
-      dependencies: []),
-    
-    .testTarget(
-      name: "SENNNN_AsyncOperatorsTests",
-      dependencies: ["SENNNN_AsyncOperators"]
-    ),
-  ]
-)
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension AsyncIteratorProtocol {
+  internal var nextTask: Task<
+    (Result<Element, Error>?, Self),
+    Never
+  > {
+      Task {
+        var iteratorCopy = self
+        
+        do {
+          let element = try await iteratorCopy.next()
+          return (element.map(Result.success), iteratorCopy)
+        } catch {
+          return (.failure(error), iteratorCopy)
+        }
+      }
+  }
+}

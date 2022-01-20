@@ -1,4 +1,3 @@
-// swift-tools-version:5.0
 //===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift.org open source project
@@ -10,26 +9,23 @@
 // See https://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
 //
 //===----------------------------------------------------------------------===//
+extension Result {
+  internal var value: Success {
+    get throws {
+      try get()
+    }
+  }
+}
 
-import PackageDescription
-
-let package = Package(
-  name: "SENNNN_AsyncOperators",
-  products: [
-    .library(
-      name: "SENNNN_AsyncOperators",
-      targets: ["SENNNN_AsyncOperators"]
-    ),
-  ],
-  dependencies: [],
-  targets: [
-    .target(
-      name: "SENNNN_AsyncOperators",
-      dependencies: []),
-    
-    .testTarget(
-      name: "SENNNN_AsyncOperatorsTests",
-      dependencies: ["SENNNN_AsyncOperators"]
-    ),
-  ]
-)
+extension Result where Failure == Never {
+  internal var value: Success {
+    get {
+      switch self {
+      case let .success(value):
+        return value
+      case let .failure(error):
+        switch error {}
+      }
+    }
+  }
+}

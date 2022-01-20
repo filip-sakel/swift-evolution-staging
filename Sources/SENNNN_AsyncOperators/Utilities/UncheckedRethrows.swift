@@ -1,4 +1,3 @@
-// swift-tools-version:5.0
 //===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift.org open source project
@@ -11,25 +10,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-import PackageDescription
+internal func withUncheckedRethrows<Value>(
+  _ body: () throws -> Value
+) rethrows -> Value {
+  try body()
+}
 
-let package = Package(
-  name: "SENNNN_AsyncOperators",
-  products: [
-    .library(
-      name: "SENNNN_AsyncOperators",
-      targets: ["SENNNN_AsyncOperators"]
-    ),
-  ],
-  dependencies: [],
-  targets: [
-    .target(
-      name: "SENNNN_AsyncOperators",
-      dependencies: []),
-    
-    .testTarget(
-      name: "SENNNN_AsyncOperatorsTests",
-      dependencies: ["SENNNN_AsyncOperators"]
-    ),
-  ]
-)
+internal func withUncheckedRethrows<Value>(
+  _ body: () async throws -> Value
+) async rethrows -> Value {
+  try await body()
+}
