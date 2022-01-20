@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 //===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift.org open source project
@@ -14,22 +14,21 @@
 import PackageDescription
 
 let package = Package(
-  name: "SENNNN_AsyncOperators",
+  name: "SE0000_PackageName",
   products: [
     .library(
-      name: "SENNNN_AsyncOperators",
-      targets: ["SENNNN_AsyncOperators"]
-    ),
+      name: "SE0000_PackageName",
+      targets: ["SE0000_PackageName"]),
   ],
-  dependencies: [],
+  dependencies: [
+  ],
   targets: [
     .target(
-      name: "SENNNN_AsyncOperators",
+      name: "SE0000_PackageName",
       dependencies: []),
     
     .testTarget(
-      name: "SENNNN_AsyncOperatorsTests",
-      dependencies: ["SENNNN_AsyncOperators"]
-    ),
+      name: "SE0000_PackageNameTests",
+      dependencies: ["SE0000_PackageName"]),
   ]
 )

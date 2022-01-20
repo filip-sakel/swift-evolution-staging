@@ -10,14 +10,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-extension Result where Failure == Error {
-  public init(
-    catching body: () async throws -> Success
-  ) async {
-    do {
-      self = try await .success(body())
-    } catch {
-      self = .failure(error)
-    }
+import XCTest
+import SE0000_PackageName
+
+final class SENNNN_PackageNameTests: XCTestCase {
+  func testPlaceholder() {
+    XCTAssertEqual(Placeholder.message, "Hello, world!")
   }
 }

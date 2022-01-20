@@ -10,9 +10,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-import XCTest
-import SENNNN_AsyncOperators
-
-final class SENNNN_PackageNameTests: XCTestCase {
-    // TODO: Add tests.
+public struct Placeholder {
+  public static var message = "Hello, world!"
 }
