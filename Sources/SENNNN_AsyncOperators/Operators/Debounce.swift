@@ -10,6 +10,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+/// An asynchronous sequence that delays the emission of each element
+/// until the given duration passes without the underlying sequence
+/// emitting any other elements, essentially acting as a cooldown operator.
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public struct AsyncDebounceSequence<
   Base: AsyncSequence,
@@ -155,6 +158,9 @@ public struct AsyncDebounceSequence<
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension AsyncSequence {
+  /// Delays the emission of each element until the given duration
+  /// passes without the underlying sequence emitting any other
+  /// elements, essentially acting as a cooldown operator.
   public func debounce<ClockType>(
     _ duration: Duration,
     clock: ClockType
@@ -166,6 +172,9 @@ extension AsyncSequence {
     )
   }
   
+  /// Delays the emission of each element until the given duration
+  /// passes without the underlying sequence emitting any other
+  /// elements, essentially acting as a cooldown operator.
   public func debounce(
     _ duration: Duration
   ) -> AsyncDebounceSequence<Self, ContinuousClock> {

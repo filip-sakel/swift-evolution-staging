@@ -25,7 +25,8 @@ let package = Package(
   targets: [
     .target(
       name: "SENNNN_AsyncOperators",
-      dependencies: []),
+      dependencies: []
+    ),
     
     .testTarget(
       name: "SENNNN_AsyncOperatorsTests",

@@ -100,7 +100,6 @@ public struct AsyncBufferSequence<
       self.stream = stream
     }
     
-    #warning("Check failure at debounce example!!")
     public mutating func next() async rethrows -> Base.Element? {
       try await withUncheckedRethrows { try await stream.next() }
     }
